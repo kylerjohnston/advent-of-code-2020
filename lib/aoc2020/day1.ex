@@ -8,14 +8,14 @@ defmodule AoC2020.Day1 do
     part_two(input)
   end
 
-  def part_one(input) do
+  defp part_one(input) do
     IO.puts "Solving Day 1 Part 1..."
     input
     |> solve_part_1()
     |> IO.puts
   end
 
-  def part_two(input) do
+  defp part_two(input) do
     IO.puts "Solving Day 1 Part 2..."
     input
     |> solve_part_2()
@@ -24,18 +24,18 @@ defmodule AoC2020.Day1 do
 
   def solve_part_1([h|t]), do: do_solve_part_1([h|t], t)
 
-  def do_solve_part_1([a, b|_], _) when a + b == 2020, do: a * b
+  defp do_solve_part_1([a, b|_], _) when a + b == 2020, do: a * b
 
-  def do_solve_part_1([a, _|tail], rem), do: do_solve_part_1([a|tail], rem)
+  defp do_solve_part_1([a, _|tail], rem), do: do_solve_part_1([a|tail], rem)
 
-  def do_solve_part_1(_, rem), do: solve_part_1(rem)
+  defp do_solve_part_1(_, rem), do: solve_part_1(rem)
 
   def solve_part_2([h|t]) do
     do_solve_part_2([h|t], t)
   end
 
-  def do_solve_part_2(list, remainder, pairs_tried \\ [])
-  def do_solve_part_2([a, b|tail], rem, pairs_tried) do
+  defp do_solve_part_2(list, remainder, pairs_tried \\ [])
+  defp do_solve_part_2([a, b|tail], rem, pairs_tried) do
     if Enum.member?(pairs_tried, MapSet.new([a, b])) do
       do_solve_part_2([a|tail], rem, pairs_tried)
     else
@@ -47,13 +47,13 @@ defmodule AoC2020.Day1 do
     end
   end
 
-  def do_solve_part_2(_, rem, _), do: solve_part_2(rem)
+  defp do_solve_part_2(_, rem, _), do: solve_part_2(rem)
 
-  def try_pair({a, b}, [h|_]) when a + b + h == 2020, do: a * b * h
+  defp try_pair({a, b}, [h|_]) when a + b + h == 2020, do: a * b * h
 
-  def try_pair({a, b}, [_|t]) do
+  defp try_pair({a, b}, [_|t]) do
     try_pair({a, b}, t)
   end
 
-  def try_pair({_, _}, []), do: false
+  defp try_pair({_, _}, []), do: false
 end
