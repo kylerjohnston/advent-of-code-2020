@@ -31,22 +31,18 @@ defmodule AoC2020.Day1 do
   def do_solve_part_1(_, rem), do: solve_part_1(rem)
 
   def solve_part_2([h|t]) do
-    result = do_solve_part_2([h|t])
-    case result do
-      false -> solve_part_2(t)
-      _ -> result
-    end
+    do_solve_part_2([h|t], t)
   end
 
-  def do_solve_part_2([a, b|tail]) do
+  def do_solve_part_2([a, b|tail], rem) do
     result = try_pair({a, b}, tail)
     case result do
-      false -> do_solve_part_2([a|tail])
+      false -> do_solve_part_2([a|tail], rem)
       _ -> result
     end
   end
 
-  def do_solve_part_2(_), do: false
+  def do_solve_part_2(_, rem), do: solve_part_2(rem)
 
   def try_pair({a, b}, [h|_]) when a + b + h == 2020, do: a * b * h
 
