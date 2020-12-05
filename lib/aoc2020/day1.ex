@@ -34,15 +34,20 @@ defmodule AoC2020.Day1 do
     do_solve_part_2([h|t], t)
   end
 
-  def do_solve_part_2([a, b|tail], rem) do
-    result = try_pair({a, b}, tail)
-    case result do
-      false -> do_solve_part_2([a|tail], rem)
-      _ -> result
+  def do_solve_part_2(list, remainder, pairs_tried \\ [])
+  def do_solve_part_2([a, b|tail], rem, pairs_tried) do
+    if Enum.member?(pairs_tried, MapSet.new([a, b])) do
+      do_solve_part_2([a|tail], rem, pairs_tried)
+    else
+      result = try_pair({a, b}, tail)
+      case result do
+        false -> do_solve_part_2([a|tail], rem, [MapSet.new([a, b])|pairs_tried])
+        _ -> result
+      end
     end
   end
 
-  def do_solve_part_2(_, rem), do: solve_part_2(rem)
+  def do_solve_part_2(_, rem, _), do: solve_part_2(rem)
 
   def try_pair({a, b}, [h|_]) when a + b + h == 2020, do: a * b * h
 
