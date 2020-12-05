@@ -23,21 +23,17 @@ defmodule AoC2020.Day1 do
   end
 
   def solve_part_1([h|t]) do
-    result = solve_for_list([h|t])
-    case result do
-      false -> solve_part_1(t)
-      _ -> result
-    end
+    solve_for_list([h|t], t)
   end
 
-  def solve_for_list([a, b|_]) when a + b == 2020, do: a * b
+  def solve_for_list([a, b|_], _) when a + b == 2020, do: a * b
 
-  def solve_for_list([a, _|tail]) do
-    solve_for_list([a|tail])
+  def solve_for_list([a, _|tail], rem) do
+    solve_for_list([a|tail], rem)
   end
 
-  def solve_for_list(_) do
-    false
+  def solve_for_list(_, rem) do
+    solve_part_1(rem)
   end
 
   def solve_part_2([h|t]) do
