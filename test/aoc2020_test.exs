@@ -10,7 +10,8 @@ defmodule Aoc2020Test do
                     1456]
 
   test "day 1, part 1" do
-    assert AoC2020.Day1.solve_part_1(@day1_test_input) == 514579
+    #assert AoC2020.Day1.solve_part_1(@day1_test_input) == 514579
+    assert AoC2020.Day1.solve(@day1_test_input, 2, 2020) == 514579
   end
 
   test "day 1, part 2" do

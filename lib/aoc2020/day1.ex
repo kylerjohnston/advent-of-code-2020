@@ -1,4 +1,9 @@
 defmodule AoC2020.Day1 do
+  @moduledoc """
+  Benchmarks:
+  Name            ips        average  deviation         median         99th %
+  Day 1        136.28        7.34 ms     ±0.62%        7.34 ms        7.44 ms
+  """
   import AoC2020.Helper, only: [ read_file_to_list_of_ints: 1 ]
   def run() do
     IO.puts "DAY 1"
@@ -15,13 +20,6 @@ defmodule AoC2020.Day1 do
     |> IO.puts
   end
 
-  defp part_two(input) do
-    IO.puts "Solving Day 1 Part 2..."
-    input
-    |> solve_part_2()
-    |> IO.puts
-  end
-
   def solve_part_1([h|t]), do: do_solve_part_1([h|t], t)
 
   defp do_solve_part_1([a, b|_], _) when a + b == 2020, do: a * b
@@ -29,6 +27,13 @@ defmodule AoC2020.Day1 do
   defp do_solve_part_1([a, _|tail], rem), do: do_solve_part_1([a|tail], rem)
 
   defp do_solve_part_1(_, rem), do: solve_part_1(rem)
+
+  defp part_two(input) do
+    IO.puts "Solving Day 1 Part 2..."
+    input
+    |> solve_part_2()
+    |> IO.puts
+  end
 
   def solve_part_2([h|t]) do
     do_solve_part_2([h|t], t)
