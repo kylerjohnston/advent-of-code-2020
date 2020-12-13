@@ -13,7 +13,7 @@ defmodule AoC2020.Day1 do
     part_two(input)
   end
 
-  defp part_one(input) do
+  def part_one(input) do
     IO.puts "Solving Day 1 Part 1..."
     input
     |> solve_part_1()
@@ -28,7 +28,7 @@ defmodule AoC2020.Day1 do
 
   defp do_solve_part_1(_, rem), do: solve_part_1(rem)
 
-  defp part_two(input) do
+  def part_two(input) do
     IO.puts "Solving Day 1 Part 2..."
     input
     |> solve_part_2()
