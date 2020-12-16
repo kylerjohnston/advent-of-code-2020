@@ -44,7 +44,13 @@ defmodule AoC2020.Day2 do
 
   def part_one(input) do
     IO.puts "Solving Day 2 Part 1..."
-    count_true(input)
+    Enum.reduce(input, 0, fn x, acc ->
+      if is_valid?(x) do
+        1 + acc
+      else
+        acc
+      end
+    end)
     |> IO.puts
   end
 
@@ -59,15 +65,4 @@ defmodule AoC2020.Day2 do
 
   defp is_between(number, min, max) when number >= min and number <= max, do: true
   defp is_between(_, _, _), do: false
-
-  def count_true(cases, count \\ 0)
-  def count_true([], count), do: count
-
-  def count_true([testcase|cases], count) do
-    if is_valid?(testcase) do
-      count_true(cases, count + 1)
-    else
-      count_true(cases, count)
-    end
-  end
 end
