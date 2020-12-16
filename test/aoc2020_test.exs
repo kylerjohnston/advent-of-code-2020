@@ -23,4 +23,10 @@ defmodule Aoc2020Test do
     assert AoC2020.Day2.is_valid?("1-3 b: cdefg", 1) == false
     assert AoC2020.Day2.is_valid?("2-9 c: ccccccccc", 1)
   end
+
+  test "day 2, part 2" do
+    assert AoC2020.Day2.is_valid?("1-3 a: abcde", 2)
+    assert AoC2020.Day2.is_valid?("1-3 b: cdefg", 2) == false
+    assert AoC2020.Day2.is_valid?("2-9 c: ccccccccc", 2) == false
+  end
 end

@@ -40,11 +40,18 @@ defmodule AoC2020.Day2 do
     IO.puts "-----"
     input = read_file_to_list("inputs/day2.txt")
     part_one(input)
+    part_two(input)
   end
 
   def part_one(input) do
     IO.puts "Solving Day 2 Part 1..."
     Enum.count(input, fn x -> is_valid?(x, 1) end)
+    |> IO.puts
+  end
+
+  def part_two(input) do
+    IO.puts "Solving Day 2 Part 2..."
+    Enum.count(input, fn x -> is_valid?(x, 2) end)
     |> IO.puts
   end
 
@@ -55,10 +62,17 @@ defmodule AoC2020.Day2 do
     case part do
       1 -> Enum.count(graphemes, fn x -> x == char end)
         |> is_between(String.to_integer(min), String.to_integer(max))
+      2 -> validate_part_2(Enum.at(graphemes, String.to_integer(min) - 1), Enum.at(graphemes, String.to_integer(max) - 1), char)
     end
   end
 
   defp is_between(number, min, max) when number >= min and number <= max, do: true
 
   defp is_between(_, _, _), do: false
+
+  defp validate_part_2(pos1, pos2, char) when pos1 == char and pos2 == char, do: false
+
+  defp validate_part_2(pos1, pos2, char) when pos1 == char or pos2 == char, do: true
+
+  defp validate_part_2(_, _, _), do: false
 end
