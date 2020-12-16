@@ -58,11 +58,10 @@ defmodule AoC2020.Day2 do
   @doc "input is a string like \"1-3 a: abcde\""
   def is_valid?(input, part) do
     [[_, min, max, char, pw]] = Regex.scan(~r/([[:digit:]]+)-([[:digit:]]+) ([[:alpha:]]): ([[:alpha:]]+)/, input)
-    graphemes = String.graphemes(pw)
     case part do
-      1 -> Enum.count(graphemes, fn x -> x == char end)
+      1 -> Enum.count(String.graphemes(pw), fn x -> x == char end)
         |> is_between(String.to_integer(min), String.to_integer(max))
-      2 -> validate_part_2(Enum.at(graphemes, String.to_integer(min) - 1), Enum.at(graphemes, String.to_integer(max) - 1), char)
+      2 -> validate_part_2(String.at(pw, String.to_integer(min) - 1), String.at(pw, String.to_integer(max) - 1), char)
     end
   end
 
