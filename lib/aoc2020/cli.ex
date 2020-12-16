@@ -29,6 +29,10 @@ defmodule AoC2020.CLI do
     AoC2020.Day1.run
   end
 
+  def process("2") do
+    AoC2020.Day2.run
+  end
+
   def process(:help) do
     IO.puts """
     usage: aoc2020 dayN
