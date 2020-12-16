@@ -44,25 +44,21 @@ defmodule AoC2020.Day2 do
 
   def part_one(input) do
     IO.puts "Solving Day 2 Part 1..."
-    Enum.reduce(input, 0, fn x, acc ->
-      if is_valid?(x) do
-        1 + acc
-      else
-        acc
-      end
-    end)
+    Enum.count(input, fn x -> is_valid?(x, 1) end)
     |> IO.puts
   end
 
   @doc "input is a string like \"1-3 a: abcde\""
-  def is_valid?(input) do
+  def is_valid?(input, part) do
     [[_, min, max, char, pw]] = Regex.scan(~r/([[:digit:]]+)-([[:digit:]]+) ([[:alpha:]]): ([[:alpha:]]+)/, input)
-    case Regex.scan(~r/#{char}/, pw) do
-      [] -> false
-      count -> is_between(Enum.count(count), String.to_integer(min), String.to_integer(max))
+    graphemes = String.graphemes(pw)
+    case part do
+      1 -> Enum.count(graphemes, fn x -> x == char end)
+        |> is_between(String.to_integer(min), String.to_integer(max))
     end
   end
 
   defp is_between(number, min, max) when number >= min and number <= max, do: true
+
   defp is_between(_, _, _), do: false
 end

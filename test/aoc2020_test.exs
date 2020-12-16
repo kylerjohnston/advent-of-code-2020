@@ -9,10 +9,6 @@ defmodule Aoc2020Test do
                     675,
                     1456]
 
-  @day2_test_input ["1-3 a: abcde",
-                    "1-3 b: cdefg",
-                    "2-9 c: ccccccccc"]
-
   test "day 1, part 1" do
     #assert AoC2020.Day1.solve_part_1(@day1_test_input) == 514579
     assert AoC2020.Day1.solve_part_1(@day1_test_input) == 514579
@@ -23,9 +19,8 @@ defmodule Aoc2020Test do
   end
 
   test "day 2, part 1" do
-    assert AoC2020.Day2.is_valid?("1-3 a: abcde")
-    assert AoC2020.Day2.is_valid?("1-3 b: cdefg") == false
-    assert AoC2020.Day2.is_valid?("2-9 c: ccccccccc")
-    assert AoC2020.Day2.count_true(@day2_test_input) == 2
+    assert AoC2020.Day2.is_valid?("1-3 a: abcde", 1)
+    assert AoC2020.Day2.is_valid?("1-3 b: cdefg", 1) == false
+    assert AoC2020.Day2.is_valid?("2-9 c: ccccccccc", 1)
   end
 end
